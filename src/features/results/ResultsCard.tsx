@@ -5,6 +5,34 @@ import styled from 'styled-components';
 
 const { Panel } = antCollapse;
 
+const ResultCard: React.FC<{store: satisfactionProps}> = ({ store }) => {
+  const { storeName, storeId, excelente, muitoBom,
+  razoavel, ruim, horrivel } = store
+
+  const surveyTotal = (excelente + muitoBom + razoavel + ruim + horrivel)
+
+  const calculateSat = () => (((excelente + muitoBom) / surveyTotal) * 100)
+
+  return (
+    <Card>
+      <CardHeader>{ storeId }</CardHeader>
+      <Title>{ storeName }</Title>
+      <Satisfaction>Satisfação: {calculateSat()} %</Satisfaction>
+      <Collapse>
+        <Panel header={`${surveyTotal} Avaliações`} key={ storeId }>
+          <ul>
+            <li>Excelente: {excelente}</li>
+            <li>Muito Bom: {muitoBom}</li>
+            <li>Razoável: {razoavel}</li>
+            <li>Ruim: {ruim}</li>
+            <li>Horrível: {horrivel}</li>
+          </ul>
+        </Panel>
+      </Collapse>
+    </Card>
+  );
+};
+
 const Title = styled.p`
   font-size: 20px;
   color: #444;
@@ -63,34 +91,5 @@ const Collapse = styled(antCollapse)`
     }
   }
 `
-
-const ResultCard: React.FC<{store: satisfactionProps}> = ({ store }) => {
-  const { storeName, storeId, excelente, muitoBom,
-  razoavel, ruim, horrivel } = store
-
-  const surveyTotal = (excelente + muitoBom + razoavel + ruim + horrivel)
-
-  const calculateSat = () => (((excelente + muitoBom) / surveyTotal) * 100)
-
-
-  return (
-    <Card>
-      <CardHeader>{ storeId }</CardHeader>
-      <Title>{ storeName }</Title>
-      <Satisfaction>Satisfação: {calculateSat()} %</Satisfaction>
-      <Collapse>
-        <Panel header={`${surveyTotal} Avaliações`} key={ storeId }>
-          <ul>
-            <li>Excelente: {excelente}</li>
-            <li>Muito Bom: {muitoBom}</li>
-            <li>Razoável: {razoavel}</li>
-            <li>Ruim: {ruim}</li>
-            <li>Horrível: {horrivel}</li>
-          </ul>
-        </Panel>
-      </Collapse>
-    </Card>
-  );
-};
 
 export default ResultCard;

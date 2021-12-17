@@ -3,14 +3,7 @@ import Card from './ResultsCard';
 import { satisfactionProps } from './resultsSlice';
 import styled from 'styled-components';
 
-const Container = styled.div`
-  display: flex;
-  align-items: flex-start;
-  align-content: flex-start;
-  justify-content: center;
-`
-
-export function ResultsList() {
+const ResultsList = () => {
   const satisfaction = useSelector((state: any) => state.results)
 
   return (
@@ -21,3 +14,11 @@ export function ResultsList() {
     </Container>
   );
 }
+
+const Container = styled.div`
+  align-content: flex-start;
+  align-items: flex-start;
+  display: flex;
+  justify-content: center;
+`
+export default ResultsList;
