@@ -1,11 +1,11 @@
 import React from 'react';
-import ResultsList from './features/results/ResultsList';
 import Tabs from './features/Tabs';
 import Header from './features/Header'
 import 'antd/dist/antd.css';
 import styled from 'styled-components';
 import ResultsSummary from './features/results/ResultsSummary';
 import GlobalStyle from './styles/global'
+import ResultsTable from './features/results/ResultsTable';
 
 function App() {
   return (
@@ -16,7 +16,7 @@ function App() {
           <Header />
           <Tabs />
           <ResultsSummary />
-          <ResultsList />
+          <ResultsTable />
         </Wrapper>
       </Background>
     </>

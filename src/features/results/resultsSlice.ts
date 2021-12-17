@@ -1,4 +1,4 @@
-export type satisfactionProps = {
+export type companyProps = {
   storeId: number;
   storeName: string;
   excelente: number;
@@ -7,9 +7,10 @@ export type satisfactionProps = {
   ruim: number;
   horrivel: number;
   total: number;
+  satisfacao: number;
 }
 
-const initialState: Array<satisfactionProps> = []
+const initialState: Array<companyProps> = []
 
 export function resultsReducer(state = initialState, action: any) {
   switch (action.type) {
@@ -26,7 +27,8 @@ export function resultsReducer(state = initialState, action: any) {
 export async function fetchAPI(dispatch: any, _getState: any) {
   const response = await fetch('https://storage.googleapis.com/dito-questions/survey-responses.json')
   const results = await response.json();
-  const satisfaction: Array<satisfactionProps> = [];
+  const satisfaction: Array<companyProps
+> = [];
 
   const getStoreScore = (id: number, storeName: string) => {
     let store = {
@@ -37,7 +39,8 @@ export async function fetchAPI(dispatch: any, _getState: any) {
       razoavel: 0,
       ruim: 0,
       horrivel: 0,
-      total: 0
+      total: 0,
+      satisfacao: 0
     };
     const index = id - 1;
     if (satisfaction[index]) {
@@ -62,6 +65,7 @@ export async function fetchAPI(dispatch: any, _getState: any) {
         }
         store.total += 1;
       });
+      store.satisfacao = (((store.excelente + store.muitoBom) / store.total) * 100)
       satisfaction[index] = store
     }
   }

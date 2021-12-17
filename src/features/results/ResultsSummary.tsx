@@ -1,13 +1,13 @@
 import { useSelector } from 'react-redux'
 import { Divider as AntDivider } from 'antd';
-import { satisfactionProps } from './resultsSlice';
+import { companyProps } from './resultsSlice';
 import styled from 'styled-components';
 
 const ResultsSummary = () => {
   const satisfaction = useSelector((state: any) => state.results)
 
   const { excelente, muitoBom, razoavel, ruim, horrivel, total} = satisfaction.reduce(
-    (prev: satisfactionProps, curr: satisfactionProps) => ({
+    (prev: companyProps, curr: companyProps) => ({
       excelente: prev.excelente + curr.excelente,
       muitoBom: prev.muitoBom + curr.muitoBom,
       razoavel: prev.razoavel + curr.razoavel,
