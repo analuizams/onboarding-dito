@@ -6,6 +6,7 @@ export type satisfactionProps = {
   razoavel: number;
   ruim: number;
   horrivel: number;
+  total: number;
 }
 
 const initialState: Array<satisfactionProps> = []
@@ -35,7 +36,8 @@ export async function fetchAPI(dispatch: any, _getState: any) {
       muitoBom: 0,
       razoavel: 0,
       ruim: 0,
-      horrivel: 0
+      horrivel: 0,
+      total: 0
     };
     const index = id - 1;
     if (satisfaction[index]) {
@@ -58,6 +60,7 @@ export async function fetchAPI(dispatch: any, _getState: any) {
           default:
             store.horrivel += 1;
         }
+        store.total += 1;
       });
       satisfaction[index] = store
     }

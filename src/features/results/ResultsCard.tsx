@@ -1,9 +1,9 @@
 import React from 'react';
 import { satisfactionProps } from './resultsSlice';
-import { Collapse } from 'antd';
+import { Collapse as antCollapse } from 'antd';
 import styled from 'styled-components';
 
-const { Panel } = Collapse;
+const { Panel } = antCollapse;
 
 const Title = styled.p`
   font-size: 20px;
@@ -42,6 +42,27 @@ const Satisfaction = styled.p`
   }
 `
 
+const Collapse = styled(antCollapse)`
+  &.ant-collapse {
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    .ant-collapse-item {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      // & referencia o elemento pai
+      &:last-child {
+        > .ant-collapse-content {
+          border-bottom-left-radius: 10px;
+          border-bottom-right-radius: 10px;
+        }
+      }
+      > .ant-collapse-header {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+      }
+    }
+  }
+`
 
 const ResultCard: React.FC<{store: satisfactionProps}> = ({ store }) => {
   const { storeName, storeId, excelente, muitoBom,
