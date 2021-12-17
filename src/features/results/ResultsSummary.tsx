@@ -22,7 +22,7 @@ const ResultsSummary = () => {
       horrivel: 0,
       total: 0,
     }
-  )
+  );
 
   const satisfactionPercent = ((excelente + muitoBom) / total) * 100
   const getPercentage = (value: number, total: number) => (value / total) * 100;
@@ -64,7 +64,7 @@ const ResultsSummary = () => {
         <Value>&#x1F620; {getPercentage(horrivel, total)}%</Value>
       </Col>
     </Grid>
-  );
+  )
 };
 
 const Grid = styled.div`
